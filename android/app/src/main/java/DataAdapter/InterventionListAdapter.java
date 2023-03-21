@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import Model.Entity.Intervention;
@@ -13,8 +12,6 @@ import com.example.myapplication.R;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import Model.Entity.Intervention;
 
 // notre classe dérivant de RecyclerView.Adapter<ContactList.ViewHolder> car notre viewholder est intégré à cette classe
 public class InterventionListAdapter extends RecyclerView.Adapter<InterventionListAdapter.ViewHolder> {
@@ -37,22 +34,12 @@ public class InterventionListAdapter extends RecyclerView.Adapter<InterventionLi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // on récupére notre objet Contact correspondant à la position
-        Intervention lecontact = mData.get(position);
+        Intervention lintervention = mData.get(position);
         // puis on lie chaque élément de la vue
         // (dont les identifiants sont définis dans la classe viewholder ci-dessous)
         // a chacun des attributs de contacts correspondants
-        holder.lenomclient.setText(lecontact.getNomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.ladresseclient.setText(lecontact.getAdresseClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
-        holder.leprenomclient.setText(lecontact.getPrenomClient());
+        holder.lenomclient.setText(lintervention.getNomClient() + " " + lintervention.getPrenomClient());
+        holder.ladateintervention.setText(lintervention.getNumeroDeSerie());
     }
 
     // la méthode qui retourne le nombre total d'éléments dans la RV
@@ -82,14 +69,13 @@ public class InterventionListAdapter extends RecyclerView.Adapter<InterventionLi
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // On déclare les différents éléments de vue de l'item
         TextView lenomclient;
-        TextView leprenomclient;
-        TextView ladresseclient;
+        TextView ladateintervention;
 
         ViewHolder(View itemView) {
             super(itemView);
             //on lie les identifiants déclaré dans la vue à nos éléments
             lenomclient = itemView.findViewById(R.id.tvValueName);
-            leprenomclient = itemView.findViewById(R.id.tvValueSurname);
+            ladateintervention = itemView.findViewById(R.id.tvValueDate);
             // on ajoute au passage le listener pour le clic sur l'éléments
             itemView.setOnClickListener(this);
         }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddInterventionActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/marg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="8dp"
+                android:text="Client"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toStartOf="@+id/editTextNom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextNom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="0"
+                android:hint="Nom"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextPrenom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Prénom"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="69dp"
+                tools:layout_editor_absoluteY="174dp" />
+
+            <EditText
+                android:id="@+id/editTextAdresse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Adresse"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="69dp"
+                tools:layout_editor_absoluteY="113dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chaudière"
+                android:textSize="34sp"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="250dp" />
+
+            <EditText
+                android:id="@+id/editTextMarque"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Marque"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="66dp"
+                tools:layout_editor_absoluteY="285dp" />
+
+            <EditText
+                android:id="@+id/editTextModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Model"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="67dp"
+                tools:layout_editor_absoluteY="345dp" />
+
+            <EditText
+                android:id="@+id/editTextNumeroDeSerie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:ems="10"
+                android:hint="Numéro de série"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="66dp"
+                tools:layout_editor_absoluteY="406dp" />
+
+            <EditText
+                android:id="@+id/editTextTempsPasse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Temps passé"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editTextDateDeMiseEnService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Date de mise en service"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/editTextDateIntervention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Date d'intervention"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/editTextDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Description"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/addcontactButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="Valider" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

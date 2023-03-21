@@ -37,7 +37,7 @@ public class InterventionManager {
             " "+KEY_DATEINTERVENTION_INTERVENTION+" TEXT," +
             " "+KEY_NUMERODESERIE_INTERVENTION+" TEXT," +
             " "+KEY_DESCRIPTIONINTERVENTION_INTERVENTION+" TEXT," +
-            " "+KEY_TEMPSPASSE_INTERVENTION+" TEXT," +
+            " "+KEY_TEMPSPASSE_INTERVENTION+" TEXT" +
             ");";
     private TheSQLiteDB maBase; // notre gestionnaire du fichier SQLite
     private SQLiteDatabase db;

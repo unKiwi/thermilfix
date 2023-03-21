@@ -107,7 +107,7 @@ public class Intervention {
     }
 
     public String getNumeroDeSerie() {
-        return adresseClient;
+        return numeroDeSerie;
     }
 
     public void setNumeroDeSerie(String numeroDeSerie) {
