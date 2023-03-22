@@ -40,6 +40,7 @@ public class InterventionListAdapter extends RecyclerView.Adapter<InterventionLi
         // a chacun des attributs de contacts correspondants
         holder.lenomclient.setText(lintervention.getNomClient() + " " + lintervention.getPrenomClient());
         holder.ladateintervention.setText(lintervention.getNumeroDeSerie());
+//        lintervention.log();
     }
 
     // la méthode qui retourne le nombre total d'éléments dans la RV

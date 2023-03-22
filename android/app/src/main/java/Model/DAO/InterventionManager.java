@@ -61,6 +61,7 @@ public class InterventionManager {
     }
 
     public long addIntervention(Intervention intervention) {
+        intervention.log();
         // Ajout d'un enregistrement dans la table
 
         ContentValues values = new ContentValues();
@@ -123,14 +124,14 @@ public class InterventionManager {
             a.setId(c.getInt(c.getColumnIndex(KEY_ID_INTERVENTION)));
             a.setNomClient(c.getString(c.getColumnIndex(KEY_NOMCLIENT_INTERVENTION)));
             a.setPrenomClient(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setAdresseClient(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setMarqueChaudiere(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setModelChaudiere(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setDateDeMiseEnService(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setDateItervention(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setNumeroDeSerie(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setDescriptionIntervention(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-            a.setTempsPasse(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
+            a.setAdresseClient(c.getString(c.getColumnIndex(KEY_ADRESSECLIENT_INTERVENTION)));
+            a.setMarqueChaudiere(c.getString(c.getColumnIndex(KEY_MARQUECHAUDIERE_INTERVENTION)));
+            a.setModelChaudiere(c.getString(c.getColumnIndex(KEY_MODELCHAUDIERE_INTERVENTION)));
+            a.setDateDeMiseEnService(c.getString(c.getColumnIndex(KEY_DATEDEMISEENSERVICE_INTERVENTION)));
+            a.setDateItervention(c.getString(c.getColumnIndex(KEY_DATEINTERVENTION_INTERVENTION)));
+            a.setNumeroDeSerie(c.getString(c.getColumnIndex(KEY_NUMERODESERIE_INTERVENTION)));
+            a.setDescriptionIntervention(c.getString(c.getColumnIndex(KEY_DESCRIPTIONINTERVENTION_INTERVENTION)));
+            a.setTempsPasse(c.getString(c.getColumnIndex(KEY_TEMPSPASSE_INTERVENTION)));
             c.close();
         }
 
@@ -152,14 +153,14 @@ public class InterventionManager {
                 a.setId(c.getInt(c.getColumnIndex(KEY_ID_INTERVENTION)));
                 a.setNomClient(c.getString(c.getColumnIndex(KEY_NOMCLIENT_INTERVENTION)));
                 a.setPrenomClient(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setAdresseClient(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setMarqueChaudiere(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setModelChaudiere(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setDateDeMiseEnService(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setDateItervention(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setNumeroDeSerie(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setDescriptionIntervention(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
-                a.setTempsPasse(c.getString(c.getColumnIndex(KEY_PRENOMCLIENT_INTERVENTION)));
+                a.setAdresseClient(c.getString(c.getColumnIndex(KEY_ADRESSECLIENT_INTERVENTION)));
+                a.setMarqueChaudiere(c.getString(c.getColumnIndex(KEY_MARQUECHAUDIERE_INTERVENTION)));
+                a.setModelChaudiere(c.getString(c.getColumnIndex(KEY_MODELCHAUDIERE_INTERVENTION)));
+                a.setDateDeMiseEnService(c.getString(c.getColumnIndex(KEY_DATEDEMISEENSERVICE_INTERVENTION)));
+                a.setDateItervention(c.getString(c.getColumnIndex(KEY_DATEINTERVENTION_INTERVENTION)));
+                a.setNumeroDeSerie(c.getString(c.getColumnIndex(KEY_NUMERODESERIE_INTERVENTION)));
+                a.setDescriptionIntervention(c.getString(c.getColumnIndex(KEY_DESCRIPTIONINTERVENTION_INTERVENTION)));
+                a.setTempsPasse(c.getString(c.getColumnIndex(KEY_TEMPSPASSE_INTERVENTION)));
 
                 // ajoute l'objet créé à la ArrayList de Intervention qui sera renvoyée.
                 interventionList.add(a);

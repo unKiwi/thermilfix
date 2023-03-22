@@ -129,4 +129,27 @@ public class Intervention {
     public void setTempsPasse(String tempsPasse) {
         this.tempsPasse = tempsPasse;
     }
+
+    public void log() {
+        System.out.println("nomClient");
+        System.out.println(getNomClient());
+        System.out.println("prenomClient");
+        System.out.println(getPrenomClient());
+        System.out.println("adresseClient");
+        System.out.println(getAdresseClient());
+        System.out.println("marqueChaudiere");
+        System.out.println(getMarqueChaudiere());
+        System.out.println("modelChaudiere");
+        System.out.println(getModelChaudiere());
+        System.out.println("numeroDeSerie");
+        System.out.println(getNumeroDeSerie());
+        System.out.println("dateItervention");
+        System.out.println(getDateItervention());
+        System.out.println("dateDeMiseEnService");
+        System.out.println(getDateDeMiseEnService());
+        System.out.println("tempsPasse");
+        System.out.println(getTempsPasse());
+        System.out.println("descriptionIntervention");
+        System.out.println(getDescriptionIntervention());
+    }
 }
