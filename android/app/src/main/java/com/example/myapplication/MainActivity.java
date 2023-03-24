@@ -1,5 +1,9 @@
 package com.example.myapplication;
 
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import DataAdapter.InterventionListAdapter;
@@ -121,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
 
     private void sendInterventions() {
         // url to post our data
-        String url = "http://localhost:8000/";
+        String url = "http://localhost:8000/api/save";
 
         // creating a new variable for our request queue
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
@@ -135,25 +140,34 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
                 // inside on response method we are
                 // hiding our progress bar
                 // and setting data to edit text as empty
-                System.out.println("ici");
+
+                // vider la liste
+                interventionmanager.open();
+                for (Intervention intervention : interventionList) {
+                    System.out.println(intervention.getNomClient());
+                    interventionmanager.removeIntervention(intervention);
+                }
+                interventionmanager.close();
+                interventionList.clear();
+                adapter.notifyDataSetChanged();
 
                 // on below line we are displaying a success toast message.
                 Toast.makeText(MainActivity.this, "Data added to API", Toast.LENGTH_SHORT).show();
-                try {
-                    // on below line we are parsing the response
-                    // to json object to extract data from it.
-                    JSONObject respObj = new JSONObject(response);
-
-                    // below are the strings which we
-                    // extract from our json object.
-                    String name = respObj.getString("name");
-                    String job = respObj.getString("job");
-
-                    // on below line we are setting this string s to our text view.
-                    System.out.println("et la");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    // on below line we are parsing the response
+//                    // to json object to extract data from it.
+//                    JSONObject respObj = new JSONObject(response);
+//
+//                    // below are the strings which we
+//                    // extract from our json object.
+//                    String name = respObj.getString("name");
+//                    String job = respObj.getString("job");
+//
+//                    // on below line we are setting this string s to our text view.
+//                    System.out.println("et la");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override
@@ -170,8 +184,19 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
 
                 // on below line we are passing our key
                 // and value pair to our parameters.
-                params.put("name", "name");
-                params.put("job", "job");
+
+                List<Map<String, String>> interventions = new ArrayList<Map<String, String>>();
+                for (Intervention intervention : interventionList) {
+                    interventions.add(intervention.toMap());
+                }
+
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    String json = objectMapper.writeValueAsString(interventions);
+                    params.put("intervention", json);
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
+                }
 
                 // at last we are
                 // returning our params.

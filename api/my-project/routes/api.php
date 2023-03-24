@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/save', function (Request $request) {
+    print("cool");
     return "/save";
 });
 

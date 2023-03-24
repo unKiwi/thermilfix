@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body id="app">
+    <h1>Consomation d'API</h1>
+
+    <select name="technitien" id="technitien">
+        <option value="" v-for="technitien in technitiens">{{ technitien }}</option>
+    </select>
+
+    <div v-for="technitien in technitiens">
+        <div class="interventions" v-if="technitien == selectedTechnitien">
+            
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,7 @@
 package Model.Entity;
 
+import java.util.HashMap;
+
 public class Intervention {
 
     private int id;
@@ -128,6 +130,21 @@ public class Intervention {
 
     public void setTempsPasse(String tempsPasse) {
         this.tempsPasse = tempsPasse;
+    }
+
+    public HashMap<String, String> toMap () {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("nomClient", nomClient);
+        map.put("prenomClient", prenomClient);
+        map.put("adresseClient", adresseClient);
+        map.put("marqueChaudiere", marqueChaudiere);
+        map.put("modelChaudiere", modelChaudiere);
+        map.put("dateDeMiseEnService", dateDeMiseEnService);
+        map.put("dateItervention", dateItervention);
+        map.put("numeroDeSerie", numeroDeSerie);
+        map.put("descriptionIntervention", descriptionIntervention);
+        map.put("tempsPasse", tempsPasse);
+        return map;
     }
 
     public void log() {
