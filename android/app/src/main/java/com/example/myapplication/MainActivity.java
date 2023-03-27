@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
                     String json = objectMapper.writeValueAsString(interventions);
+                    System.out.println(json);
                     params.put("intervention", json);
                 } catch (JsonProcessingException e) {
                     throw new RuntimeException(e);

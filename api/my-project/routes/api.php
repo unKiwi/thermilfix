@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Intervention;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/save', function (Request $request) {
-    print("cool");
-    return "/save";
+    $json = $request->post('intervention');
+    Intervention::create(['intervention' => $json]);
+    return "saved";
 });
 
 Route::get('/', function (Request $request) {
-    return "/";
+    $interventions = Intervention::all();
+    return $interventions;
 });
