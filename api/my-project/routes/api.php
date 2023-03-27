@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 use App\Models\Intervention;
 
@@ -23,5 +24,17 @@ Route::post('/save', function (Request $request) {
 
 Route::get('/', function (Request $request) {
     $interventions = Intervention::all();
-    return $interventions;
+
+    $response = new Response($interventions);
+    $response->header('Access-Control-Allow-Origin', '*');
+    $response->header('Access-Control-Allow-Methods', '*');
+    $response->header('Access-Control-Allow-Credentials', true);
+    $response->header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type,X-Token-Auth,Authorization');
+    $response->header('Accept', 'application/json');
+
+    return $response;
+});
+Route::post('/', function () {
+    $interventions = Intervention::all();
+    return json_encode($interventions);
 });
