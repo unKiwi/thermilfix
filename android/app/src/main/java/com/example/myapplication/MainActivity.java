@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -93,7 +95,14 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
         mbuttonEnvoyer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendInterventions();
+                SharedPreferences sh = getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                String name = sh.getString("name", "");
+                if (name == "") {
+                    Intent myIntent = new Intent(MainActivity.this, LoginActivity.class);
+                    MainActivity.this.startActivity(myIntent);
+                    return;
+                }
+                sendInterventions(name);
             }
         });
     }
@@ -124,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
         adapter.notifyDataSetChanged();
     }
 
-    private void sendInterventions() {
+    private void sendInterventions(String name) {
         // url to post our data
         String url = "http://localhost:8000/api/save";
 
@@ -195,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements InterventionListA
                     String json = objectMapper.writeValueAsString(interventions);
                     System.out.println(json);
                     params.put("intervention", json);
+                    params.put("name", name);
                 } catch (JsonProcessingException e) {
                     throw new RuntimeException(e);
                 }

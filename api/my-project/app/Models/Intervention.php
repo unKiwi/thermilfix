@@ -9,7 +9,7 @@ class Intervention extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['intervention'];
+    protected $fillable = ['intervention', 'name'];
 
     /**
      * Return create validation rules
@@ -19,6 +19,7 @@ class Intervention extends Model
     {
         return [
             'intervention' => 'required',
+            'name' => 'required',
         ];
     }
 }

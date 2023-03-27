@@ -17,7 +17,7 @@ use App\Models\Intervention;
 
 Route::post('/save', function (Request $request) {
     $json = $request->post('intervention');
-    Intervention::create(['intervention' => $json]);
+    Intervention::create(['intervention' => $json, 'name' => $request->post('name')]);
     return "saved";
 });
 
