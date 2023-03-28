@@ -42,7 +42,24 @@ createApp({
         calcNbChaudiere() {
             if (this.date1 == undefined || this.date2 == undefined) return;
             
-            
+            let date1 = new Date(this.date1);
+            let date2 = new Date(this.date2);
+
+            if (date1 > date2) {
+                let dateTemp = date1;
+                date1 = date2;
+                date2 = dateTemp;
+            }
+
+            let sumChaudiere = 0;
+            this.interventions[this.selectedTechnicienForNbIntervention].forEach(intervention => {
+                let interventionDate = new Date(intervention.created_at);
+                if (interventionDate > date1 && interventionDate < date2) {
+                    sumChaudiere += intervention.intervention.length;
+                }
+            });
+
+            this.nbChaudiereReparer = `${this.selectedTechnicienForNbIntervention} a réparé ${sumChaudiere} chaudière${sumChaudiere > 1 ? "s" : ""}`;
         }
     }
 }).mount('#app');
