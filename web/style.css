@@ -1,6 +1,7 @@
 .interventions {
     margin: 8px 0;
+    padding: 16px;
     background: cornflowerblue;
     border-radius: 26px;
-    height: 300px;
+    display: flex;
 }

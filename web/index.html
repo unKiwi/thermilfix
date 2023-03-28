@@ -8,21 +8,47 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
 
-<body id="app">
+<body id="app" class="container">
     <h1>Consomation d'API</h1>
 
-    <select name="technitien" id="technitien">
-        <option value="" v-for="technitien in technitiens">{{ technitien }}</option>
+    <select class="form-select" name="technitien" id="technitien" v-model="selectedTechnicien">
+        <option :value="technicien" v-for="technicien in technitiens()">{{ technicien }}</option>
     </select>
 
-    <div v-for="technitien in technitiens">
-        <div class="interventions" v-if="technitien == selectedTechnitien">
-            
+    <div v-for="technicien in technitiens()">
+        <div v-if="technicien == selectedTechnicien">
+            <div class="flex-wrap interventions" v-for="interventionsTechnicien in interventions[technicien]">
+                <div class="m-2 card" style="width: 18rem;" v-for="intervention in interventionsTechnicien.intervention">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ intervention.nomClient }} {{ intervention.prenomClient }}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ intervention.adresseClient }}</h6>
+                        <p class="card-text">Marque {{ intervention.marqueChaudiere }} de model {{ intervention.modelChaudiere }} avec numéro de serie {{ intervention.numeroDeSerie }}</p>
+                        <p class="card-text">{{ intervention.descriptionIntervention }}</p>
+                        <p class="card-text">Date de mise en service {{ intervention.dateDeMiseEnService }}</p>
+                        <p class="card-text">Temps passé {{ intervention.tempsPasse }}</p>
+                        <p class="card-text">Date de l'intervention {{ intervention.dateItervention }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <h1>Surveillez vos esclaves</h1>
+
+    <select class="form-select" name="technitien" id="technitien" v-model="selectedTechnicienForNbIntervention" @change="calcNbChaudiere()">
+        <option :value="technicien" v-for="technicien in technitiens()">{{ technicien }}</option>
+    </select>
+    <input type="date" name="date1" id="date1" v-model="date1" @change="calcNbChaudiere()">
+    <input type="date" name="date2" id="date2" v-model="date2" @change="calcNbChaudiere()">
+    <span>{{ nbChaudiereReparer }}</span>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
 

@@ -1,65 +1,48 @@
-// const { createApp } = Vue;
 
+const { createApp } = Vue;
 
-(async function () {
-    let interventions = await fetch("http://localhost:8000/api/");
-    console.log(await interventions.json())
-})()
+createApp({
+    data() {
+        return {
+            selectedTechnicien: "",
+            interventions: {},
+            selectedTechnicienForNbIntervention: "",
+            date1: undefined,
+            date2: undefined,
+            nbChaudiereReparer: "",
+        }
+    },
+    mounted() {
+        this.getInterventions();
+    },
+    methods: {
+        technitiens() {
+            return Object.keys(this.interventions);
+        },
+        async getInterventions() {
+            let interventions = await fetch("http://localhost:8000/api/");
+            let json = await interventions.json();
 
-// (async function () {
-//     let interventions = await fetch("http://localhost:8000/api/", {mode: 'no-cors', method: "POST"});
-//     console.log(interventions)
-// })()
-// fetch('http://localhost:8000/api/', {
-//     mode: 'no-cors',
-//     headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//     },
-// })
-//     .then((response) => response.json())
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .finally((data) => {
-//         console.log(data);
-//     })
+            // parser interpreter et trier le json
+            json.forEach(intervention => {
+                if (!Array.isArray(this.interventions[intervention.name])) {
+                    this.interventions[intervention.name] = [];
+                }
 
-// fetch("http://localhost:8000/api/", {
-//     "headers": {
-//         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-//         "accept-language": "ru-RU,ru",
-//         "cache-control": "no-cache",
-//         "pragma": "no-cache",
-//         "sec-ch-ua": "\"Brave\";v=\"111\", \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"111\"",
-//         "sec-ch-ua-mobile": "?0",
-//         "sec-ch-ua-platform": "\"macOS\"",
-//         "sec-fetch-dest": "document",
-//         "sec-fetch-mode": "navigate",
-//         "sec-fetch-site": "none",
-//         "sec-fetch-user": "?1",
-//         "sec-gpc": "1",
-//         "upgrade-insecure-requests": "1"
-//     },
-//     "referrerPolicy": "strict-origin-when-cross-origin",
-//     "body": null,
-//     "method": "GET",
-//     "mode": "no-cors",
-//     "credentials": "include"
-// }).then((response) => response.text())
-// .then((data) => console.log(data))
+                this.interventions[intervention.name].push(intervention);
 
-// createApp({
-//     data() {
-//         return {
-//             selectedTechnitien: "Robert",
-//             technitiens: [
-//                 "Robert",
-//                 "Didier",
-//                 "Sam",
-//                 "Francis",
-//             ],
+                // reformater intervention
+                delete intervention.name;
+                intervention.intervention = JSON.parse(intervention.intervention);
+            });
 
-//         }
-//     }
-// }).mount('#app');
+            this.selectedTechnicien = this.technitiens()[0];
+            this.selectedTechnicienForNbIntervention = this.selectedTechnicien;
+        },
+        calcNbChaudiere() {
+            if (this.date1 == undefined || this.date2 == undefined) return;
+            
+            
+        }
+    }
+}).mount('#app');
