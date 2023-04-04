@@ -34,7 +34,3 @@ Route::get('/', function (Request $request) {
 
     return $response;
 });
-Route::post('/', function () {
-    $interventions = Intervention::all();
-    return json_encode($interventions);
-});
