@@ -1,4 +1,3 @@
-
 const { createApp } = Vue;
 
 createApp({
@@ -38,10 +37,12 @@ createApp({
 
             this.selectedTechnicien = this.technitiens()[0];
             this.selectedTechnicienForNbIntervention = this.selectedTechnicien;
+
+            this.showChart();
         },
         calcNbChaudiere() {
             if (this.date1 == undefined || this.date2 == undefined) return;
-            
+
             let date1 = new Date(this.date1);
             let date2 = new Date(this.date2);
 
@@ -60,6 +61,34 @@ createApp({
             });
 
             this.nbChaudiereReparer = `${this.selectedTechnicienForNbIntervention} a réparé ${sumChaudiere} chaudière${sumChaudiere > 1 ? "s" : ""}`;
+        },
+        showChart() {
+            google.charts.load('current', { 'packages': ['bar'] });
+            google.charts.setOnLoadCallback(() => {
+                console.log(this.interventions)
+
+                let tags = ['', ...Object.keys(this.interventions)];
+                let values = ['All time'];
+                Object.keys(this.interventions).forEach(tag => {
+                    values.push(this.interventions[tag].length)
+                })
+
+                let data = google.visualization.arrayToDataTable([
+                    tags,
+                    values
+                ]);
+
+                let options = {
+                    chart: {
+                        title: 'Performance',
+                        subtitle: "Nombre d'intervention par techniciens",
+                    }
+                };
+
+                let chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+            });
         }
     }
 }).mount('#app');

@@ -10,10 +10,14 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body id="app" class="container">
     <h1>Consomation d'API</h1>
+
+    <div id="columnchart_material" class="mb-5"></div>
 
     <select class="form-select" name="technitien" id="technitien" v-model="selectedTechnicien">
         <option :value="technicien" v-for="technicien in technitiens()">{{ technicien }}</option>
@@ -21,7 +25,7 @@
 
     <div v-for="technicien in technitiens()">
         <div v-if="technicien == selectedTechnicien">
-            <div class="flex-wrap interventions" v-for="interventionsTechnicien in interventions[technicien]">
+            <div class="interventions" v-for="interventionsTechnicien in interventions[technicien]">
                 <div class="m-2 card" style="width: 18rem;" v-for="intervention in interventionsTechnicien.intervention">
                     <div class="card-body">
                         <h5 class="card-title">{{ intervention.nomClient }} {{ intervention.prenomClient }}</h5>
@@ -39,11 +43,13 @@
 
     <h1>Surveillez vos esclaves</h1>
 
-    <select class="form-select" name="technitien" id="technitien" v-model="selectedTechnicienForNbIntervention" @change="calcNbChaudiere()">
+    <select class="form-select mb-1" name="technitien" id="technitien" v-model="selectedTechnicienForNbIntervention" @change="calcNbChaudiere()">
         <option :value="technicien" v-for="technicien in technitiens()">{{ technicien }}</option>
     </select>
-    <input type="date" name="date1" id="date1" v-model="date1" @change="calcNbChaudiere()">
-    <input type="date" name="date2" id="date2" v-model="date2" @change="calcNbChaudiere()">
+    <label for="date1">De</label><br>
+    <input type="date" name="date1" id="date1" v-model="date1" @change="calcNbChaudiere()"><br>
+    <label for="date2">à</label><br>
+    <input type="date" name="date2" id="date2" v-model="date2" @change="calcNbChaudiere()"><br>
     <span>{{ nbChaudiereReparer }}</span>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
